@@ -6,15 +6,16 @@ from pynput.keyboard import Listener as KeyboardListener
 from pynput.keyboard import Key, Controller
 from pynput import keyboard
 control = Controller()
-import pynput
+#import pynput
 import time
 import numpy as np
-import sys
+#import sys
 
 class application:
 
-    def __init__(self):
+    def __init__(self,title):
 
+        print("######################################   from_csv    ######################################")
         self.stop = False  # Flag to stop the program
 
         #array which contains all the keys
@@ -63,30 +64,26 @@ class application:
                               ['m','0','c7']])
         
         # Load the CSV file
-        file_path = "stairway.csv"
+        file_path = f".\CSV\{title}.csv"
 
-        # read csv
-        df = pd.read_csv(file_path, sep=';')
+        print('\n################', title, ' #################\n')
 
-        #print(df.shape)
+        # time per minimum beat
+        self.t = float(pd.read_csv(file_path, skiprows=3, nrows=1, sep=";").iloc[0, 1])
+        self.t_divB = self.t/1000000
 
-        #duration of each key
-        self.title = df.columns[0]
-        print('\n################', self.title, ' #################\n')
+        df = pd.read_csv(file_path, sep=';', skiprows=7)
 
         # transforming to numpy array
         self.sheet = df.to_numpy()
 
-        # time per minimum beat
-        self.t = float(df.iloc[4, 1])
-        self.t_divB = self.t/1000000
         print('minimum beat = ', self.t, 's')
         print('duration = ', (self.sheet.shape[0])*self.t, 's')
 
         #deleting first seven rows and two coumns 
-        self.sheet = np.delete(self.sheet, np.s_[0:7], axis=0)
+        #self.sheet = np.delete(self.sheet, np.s_[0:7], axis=0)
         self.sheet = np.delete(self.sheet, [0,1], 1)
-
+        print(self.sheet)
         # Reshape the array into 3D
         # self.sheet.shape[0] -> minimum beats
         # self.sheet.shape[1] -> different notes
@@ -149,6 +146,7 @@ class application:
 
         for i_beat in range(self.sheet.shape[0]):                                       # iterates over beats
             
+            print("NOW PLAYING")
             time.sleep(self.t_divB)
 
             #empty array which save the currently played notes
@@ -187,5 +185,3 @@ class application:
             with control.pressed(Key.shift):
                 control.press(self.keys[n][0])
 
-runApp = application()
-runApp.listen()
