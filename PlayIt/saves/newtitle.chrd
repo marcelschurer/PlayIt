@@ -1,0 +1,11 @@
+[GENERAL]
+title = new
+bpm = 120
+
+[TABLE]
+row0 = Em,,,
+row1 = q,q,q,q
+
+[CHORDS]
+chord_1 = Em:e3
+

@@ -1,0 +1,14 @@
+[GENERAL]
+title = Wonderwall_final
+bpm = 168
+
+[TABLE]
+row0 = Em7,,,,G,,,,,,Dsus4,,,,,A7sus4,,,,,
+row1 = q,q,q.,e,e,e,q,q,e,e,e,e,q,q,e,q.,q,e,e,e,e
+
+[CHORDS]
+chord_1 = Em7:e3, g3, b3, d3
+chord_2 = G:g3,b3,d3
+chord_3 = Dsus4:d3,g3,a3
+chord_4 = A7sus4:a3,d3,e3,g3
+

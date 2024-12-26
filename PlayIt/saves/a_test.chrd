@@ -1,0 +1,13 @@
+[GENERAL]
+title = a
+bpm = 120
+
+[TABLE]
+row0 = Em,,G,
+row1 = q,q,q,q
+
+[CHORDS]
+chord_1 = Em:e3,b3,g3
+chord_2 = C:c3,e3,g3
+chord_3 = G:g3,b3,d3
+
